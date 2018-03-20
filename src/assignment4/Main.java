@@ -41,7 +41,7 @@ public class Main {
      * @param args args can be empty.  If not empty, provide two parameters -- the first is a file name, 
      * and the second is test (for test output, where all output to be directed to a String), or nothing.
      */
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         if (args.length != 0) {
             try {
                 inputFile = args[0];
@@ -70,25 +70,46 @@ public class Main {
         /* Do not alter the code above for your submission. */
         /* Write your code below. */
         while(kb.hasNext()){
-            if(kb.nextLine().equals("quit")){
+            String temp = kb.nextLine();
+            if(temp.equals("quit")){
                 return;
             }
-            else if(kb.nextLine().equals("show")){
+            else if(temp.equals("show")){
                 Critter.displayWorld();
+                kb.nextLine();
             }
-            else if(kb.next().equals("step")){
-                for (int i = 0; i < Integer.parseInt(kb.nextLine()); i++) {
+            else if(temp.equals("step")){
+//                for (int i = 0; i < kb.nextInt(); i++) {
                     Critter.worldTimeStep();
-                }
+//                }
+                kb.nextLine();
             }
-            else if(kb.next().equals("seed")){
-                Critter.setSeed(Integer.parseInt(kb.nextLine()));
+            else if(temp.equals("seed")){
+                Critter.setSeed(kb.nextInt());
+//                System.out.println("seed");
+                kb.nextLine();
+            }
+            else if(temp.equals("make")){
+                for (int i = 0; i < 3; i++) {
+                    try {
+                        Critter.makeCritter("assignment4.Algae");
+                    } catch (InvalidCritterException e) {
+                        e.printStackTrace();
+                    }
+                }
+                for (int i = 0; i < 2; i++) {
+                    try {
+                        Critter.makeCritter("assignment4.Craig");
+                    } catch (InvalidCritterException e) {
+                        e.printStackTrace();
+                    }
+                }
+                kb.nextLine();
             }
         }
         // System.out.println("GLHF");
         
         /* Write your code above */
-        System.out.flush();
 
     }
 }
