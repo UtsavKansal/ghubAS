@@ -15,6 +15,7 @@ package assignment4;
 
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* see the PDF for descriptions of the methods and fields in this class
@@ -53,7 +54,7 @@ public abstract class Critter {
 	private int y_coord;
 	
 	protected final void walk(int direction) {
-		if(energy >= Params.walk_energy_cost){
+		if(energy > Params.walk_energy_cost){
 			switch(direction++){
 				case 1:
 					x_coord++;
@@ -85,50 +86,89 @@ public abstract class Critter {
 					break;
 				default: break;
 			}
-			energy -= Params.walk_energy_cost;
+			//check bounds
+			if(x_coord >= Params.world_width){
+				x_coord = x_coord % Params.world_width;
+			}
+			else if(x_coord < 0){
+				x_coord = Params.world_width - x_coord*(-1);
+			}
+			if(y_coord >= Params.world_height){
+				y_coord = y_coord % Params.world_height;
+			}
+			else if(y_coord < 0){
+				y_coord = Params.world_height - y_coord*(-1);
+			}
+
 		}
+		energy -= Params.walk_energy_cost;
 	}
 	
 	protected final void run(int direction) {
-		if(energy >= Params.run_energy_cost){
-			switch(direction++){
+		if(energy > Params.run_energy_cost){
+			switch(direction++) {
 				case 1:
-					x_coord+=2;
+					x_coord += 2;
 					break;
 				case 2:
-					x_coord+=2;
-					y_coord-=2;
+					x_coord += 2;
+					y_coord -= 2;
 					break;
 				case 3:
-					y_coord-=2;
+					y_coord -= 2;
 					break;
 				case 4:
-					x_coord-=2;
-					y_coord-=2;
+					x_coord -= 2;
+					y_coord -= 2;
 					break;
 				case 5:
-					x_coord-=2;
+					x_coord -= 2;
 					break;
 				case 6:
-					x_coord-=2;
-					y_coord+=2;
+					x_coord -= 2;
+					y_coord += 2;
 					break;
 				case 7:
-					y_coord+=2;
+					y_coord += 2;
 					break;
 				case 8:
-					x_coord+=2;
-					y_coord+=2;
+					x_coord += 2;
+					y_coord += 2;
 					break;
-				default: break;
+				default:
+					break;
 			}
+			//bounds check
+			if(x_coord >= Params.world_width){
+				x_coord = x_coord % Params.world_width;
+			}
+			else if(x_coord < 0){
+				x_coord = Params.world_width - x_coord*(-1);
+			}
+			if(y_coord >= Params.world_height){
+				y_coord = y_coord % Params.world_height;
+			}
+			else if(y_coord < 0){
+				y_coord = Params.world_height - y_coord*(-1);
+			}
+
 			energy -= Params.run_energy_cost;
 		}
+		energy -= Params.walk_energy_cost;
 	}
 
-	//-------------------------check bounds --------------------------------------------------------------------------//
+	protected final void rest(){
+		energy -= Params.walk_energy_cost;
+	}
 	
 	protected final void reproduce(Critter offspring, int direction) {
+		if(energy > Params.min_reproduce_energy) {
+			babies.add(offspring);
+			offspring.energy = (1/2) * energy;
+			offspring.x_coord = x_coord;
+			offspring.y_coord = y_coord;
+			offspring.walk(direction);
+		}
 	}
 
 	public abstract void doTimeStep();
@@ -257,33 +297,97 @@ public abstract class Critter {
 	
 	public static void worldTimeStep() {
 		// Complete this method.
-		for(Critter cr : population){
-			cr.doTimeStep();
+		ArrayList<Integer> movedCritters = new ArrayList<>();
+
+		for (int i = 0; i < population.size(); i++){
+			int temp = population.get(i).energy;
+			population.get(i).doTimeStep();
+			if(temp != population.get(i).energy){
+				movedCritters.add(i);
+			}
 		}
+
 		for(int i = 0; i < population.size(); i++){
-			for(int j = i + 1; j < population.size(); j++){
-				if((population.get(i).x_coord == population.get(j).x_coord) && (population.get(i).y_coord
-						== population.get(j).y_coord)){
-					int cr1_energy = 0;
-					int cr2_energy = 0;
-					if(population.get(i).fight(population.get(j).toString())){
-						cr1_energy = getRandomInt(population.get(i).energy - 1) + 1;
-					}
-					if(population.get(j).fight(population.get(i).toString())){
-						cr2_energy = getRandomInt(population.get(j).energy - 1) + 1;
-					}
+			for(int j = 0; j < population.size(); j++) {
+				if (i != j) {
+					Critter cr1 = population.get(i);
+					Critter cr2 = population.get(j);
 
-					if(cr1_energy >= cr2_energy){
-						population.get(i).energy += population.get(j).energy / 2;
-						population.remove(j);
+					if ((cr1.x_coord == cr2.x_coord) && (cr1.y_coord == cr2.y_coord)) {
+						// if both critters moved
+						if (movedCritters.contains(i) && movedCritters.contains(j)) {
+							selectWinner(cr1,cr2, i, j);
+						}
+						else if (!movedCritters.contains(i) || !movedCritters.contains(j)) {
+							if (cr1.fight(cr2.toString()) && cr2.fight(cr1.toString())) {
+								selectWinner(cr1, cr2, i , j);
+							}
+							else{
+								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){
+								/*	if(cr1.energy > Params.run_energy_cost){
+										cr1.run(0);
+									}
+									else if(cr2.fight(cr1.toString())){
+										cr2.energy += cr1.energy / 2;
+									}
+									population.remove(i); */
+									cr1.run(0);
+								}
+								if(!cr2.fight(cr1.toString()) && !movedCritters.contains(j)){
+								/*	if(cr2.energy > Params.run_energy_cost){
+										cr2.run(4);
+									}
+									else if(cr1.fight(cr2.toString())){
+										cr1.energy += cr2.energy / 2;
+									}
+									population.remove(j); */
+									cr2.run(4);
+								}
+							}
+						}
 					}
-					else{
-						population.get(j).energy += population.get(i).energy / 2;
-						population.remove(i);
-					}
-
 				}
 			}
+		}
+
+
+
+		for(Critter cr: population){
+			if(!movedCritters.contains(population.indexOf(cr))){
+				cr.rest();
+			}
+			//remove dead critters;
+			if(cr.energy <= 0){
+				population.remove(cr);
+			}
+		}
+	}
+
+	public static void selectWinner(Critter cr1, Critter cr2, int i, int j){
+		int cr1_energy = 0;
+		int cr2_energy = 0;
+
+		if (cr1.fight(cr2.toString())) {
+			cr1_energy = getRandomInt(cr1.energy - 1) + 1;
+		}
+		if (cr2.fight(cr1.toString())) {
+			cr2_energy = getRandomInt(cr2.energy - 1) + 1;
+		}
+
+		// if neither want to fight
+		if (cr1_energy == 0 && cr2_energy == 0) {
+			cr1.energy = 0;
+			cr2.energy = 0;
+		}
+		// if cr1 wants to fight (or both)
+		else if (cr1_energy >= cr2_energy) {
+			cr1.energy += cr2.energy / 2;
+			cr2.energy = 0;
+		}
+		// if cr2 wants to fight
+		else {
+			cr2.energy += cr1.energy / 2;
+			cr1.energy = 0
 		}
 	}
 	
