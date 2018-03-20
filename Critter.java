@@ -55,124 +55,91 @@ public abstract class Critter {
 	
 	protected final void walk(int direction) {
 		if(energy > Params.walk_energy_cost){
-			switch(direction++){
-				case 1:
-					x_coord++;
-					break;
-				case 2:
-					x_coord++;
-					y_coord--;
-					break;
-				case 3:
-					y_coord--;
-					break;
-				case 4:
-					x_coord--;
-					y_coord--;
-					break;
-				case 5:
-					x_coord--;
-					break;
-				case 6:
-					x_coord--;
-					y_coord++;
-					break;
-				case 7:
-					y_coord++;
-					break;
-				case 8:
-					x_coord++;
-					y_coord++;
-					break;
-				default: break;
-			}
-			//check bounds
-			if(x_coord >= Params.world_width){
-				x_coord = x_coord % Params.world_width;
-			}
-			else if(x_coord < 0){
-				x_coord = Params.world_width - x_coord*(-1);
-			}
-			if(y_coord >= Params.world_height){
-				y_coord = y_coord % Params.world_height;
-			}
-			else if(y_coord < 0){
-				y_coord = Params.world_height - y_coord*(-1);
-			}
-
+			move(direction, 1);
 		}
 		energy -= Params.walk_energy_cost;
 	}
 	
 	protected final void run(int direction) {
 		if(energy > Params.run_energy_cost){
-			switch(direction++) {
-				case 1:
-					x_coord += 2;
-					break;
-				case 2:
-					x_coord += 2;
-					y_coord -= 2;
-					break;
-				case 3:
-					y_coord -= 2;
-					break;
-				case 4:
-					x_coord -= 2;
-					y_coord -= 2;
-					break;
-				case 5:
-					x_coord -= 2;
-					break;
-				case 6:
-					x_coord -= 2;
-					y_coord += 2;
-					break;
-				case 7:
-					y_coord += 2;
-					break;
-				case 8:
-					x_coord += 2;
-					y_coord += 2;
-					break;
-				default:
-					break;
-			}
-			//bounds check
-			if(x_coord >= Params.world_width){
-				x_coord = x_coord % Params.world_width;
-			}
-			else if(x_coord < 0){
-				x_coord = Params.world_width - x_coord*(-1);
-			}
-			if(y_coord >= Params.world_height){
-				y_coord = y_coord % Params.world_height;
-			}
-			else if(y_coord < 0){
-				y_coord = Params.world_height - y_coord*(-1);
-			}
-
-			energy -= Params.run_energy_cost;
+			move(direction, 2);
 		}
-		energy -= Params.walk_energy_cost;
+		energy -= Params.run_energy_cost;
+	}
+
+
+	protected final void move(int direction, int num) {
+		switch(++direction){
+			case 1:
+				x_coord += num;
+				break;
+			case 2:
+				x_coord += num;
+				y_coord -= num;
+				break;
+			case 3:
+				y_coord -= num;
+				break;
+			case 4:
+				x_coord -= num;
+				y_coord -= num;
+				break;
+			case 5:
+				x_coord -= num;
+				break;
+			case 6:
+				x_coord -= num;
+				y_coord += num;
+				break;
+			case 7:
+				y_coord += num;
+				break;
+			case 8:
+				x_coord += num;
+				y_coord += num;
+				break;
+			default:
+				break;
+		}
+		// check bounds
+		// right
+		if(x_coord >= Params.world_width){
+			x_coord = x_coord % Params.world_width;
+		}
+		// left
+		else if(x_coord < 0){
+			x_coord = Params.world_width - x_coord*(-1);
+		}
+		// up
+		if(y_coord >= Params.world_height){
+			y_coord = y_coord % Params.world_height;
+		}
+		// down
+		else if(y_coord < 0){
+			y_coord = Params.world_height - y_coord*(-1);
+		}
 	}
 
 	protected final void rest(){
-		energy -= Params.walk_energy_cost;
+		energy -= Params.rest_energy_cost;
 	}
-	
+
+
 	protected final void reproduce(Critter offspring, int direction) {
 		if(energy > Params.min_reproduce_energy) {
-			babies.add(offspring);
-			offspring.energy = (1/2) * energy;
+			offspring.energy = (int) Math.floor(.5 * energy);
+			this.energy = (int) Math.ceil(.5 * energy);
+
 			offspring.x_coord = x_coord;
 			offspring.y_coord = y_coord;
 			offspring.walk(direction);
+
+			babies.add(offspring);
 		}
 	}
 
 	public abstract void doTimeStep();
-	public abstract boolean fight(String oponent);
+	public abstract boolean fight(String opponent);
 	
 	/**
 	 * create and initialize a Critter subclass.
@@ -220,12 +187,7 @@ public abstract class Critter {
 		java.util.Map<String, Integer> critter_count = new java.util.HashMap<String, Integer>();
 		for (Critter crit : critters) {
 			String crit_string = crit.toString();
-			Integer old_count = critter_count.get(crit_string);
-			if (old_count == null) {
-				critter_count.put(crit_string,  1);
-			} else {
-				critter_count.put(crit_string, old_count.intValue() + 1);
-			}
+			critter_count.merge(crit_string, 1, (a, b) -> a.intValue() + b);
 		}
 		String prefix = "";
 		for (String s : critter_count.keySet()) {
@@ -292,16 +254,16 @@ public abstract class Critter {
 	 */
 	public static void clearWorld() {
 		population.clear();
-		// Complete this method.
 	}
 	
 	public static void worldTimeStep() {
-		// Complete this method.
-		ArrayList<Integer> movedCritters = new ArrayList<>();
+		ArrayList<Integer> movedCritters = new ArrayList<>();	// checks for critters that moved
 
 		for (int i = 0; i < population.size(); i++){
 			int temp = population.get(i).energy;
+
 			population.get(i).doTimeStep();
+
 			if(temp != population.get(i).energy){
 				movedCritters.add(i);
 			}
@@ -314,13 +276,14 @@ public abstract class Critter {
 					Critter cr2 = population.get(j);
 
 					if ((cr1.x_coord == cr2.x_coord) && (cr1.y_coord == cr2.y_coord)) {
+
 						// if both critters moved
 						if (movedCritters.contains(i) && movedCritters.contains(j)) {
-							selectWinner(cr1,cr2, i, j);
+							selectWinner(cr1,cr2);
 						}
 						else if (!movedCritters.contains(i) || !movedCritters.contains(j)) {
 							if (cr1.fight(cr2.toString()) && cr2.fight(cr1.toString())) {
-								selectWinner(cr1, cr2, i , j);
+								selectWinner(cr1, cr2);
 							}
 							else{
 								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){
@@ -350,9 +313,8 @@ public abstract class Critter {
 			}
 		}
 
-
-
 		for(Critter cr: population){
+			// take into account resting critters
 			if(!movedCritters.contains(population.indexOf(cr))){
 				cr.rest();
 			}
@@ -363,7 +325,8 @@ public abstract class Critter {
 		}
 	}
 
-	public static void selectWinner(Critter cr1, Critter cr2, int i, int j){
+	// this is a helper function yaaaaa
+	public static void selectWinner(Critter cr1, Critter cr2){
 		int cr1_energy = 0;
 		int cr2_energy = 0;
 
@@ -387,17 +350,17 @@ public abstract class Critter {
 		// if cr2 wants to fight
 		else {
 			cr2.energy += cr1.energy / 2;
-			cr1.energy = 0
+			cr1.energy = 0;
 		}
 	}
-	
+
+
 	public static void displayWorld() {
-		// Complete this method.
 		int height = Params.world_height;
 		int width = Params.world_width;
-
 		String[][] world = new String[height + 1][width + 1];
 
+		// add borders
 		for(int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				if(i == 0 || i == height - 1){
@@ -411,16 +374,17 @@ public abstract class Critter {
 				}
 			}
 		}
-
 		world[0][0] = "+";
 		world[height - 1][0] = "+";
 		world[0][width - 1] = "+";
 		world[height - 1][width - 1] = "+";
 
+		// add critters
 		for(Critter cr : population){
 			world[cr.y_coord + 1][cr.x_coord + 1] = cr.toString();
 		}
 
+		// print grid
 		for(String[] s : world){
 			System.out.println(s);
 		}
