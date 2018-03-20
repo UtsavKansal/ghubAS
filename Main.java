@@ -73,6 +73,17 @@ public class Main {
             if(kb.nextLine().equals("quit")){
                 return;
             }
+            else if(kb.nextLine().equals("show")){
+                Critter.displayWorld();
+            }
+            else if(kb.next().equals("step")){
+                for (int i = 0; i < Integer.parseInt(kb.nextLine()); i++) {
+                    Critter.worldTimeStep();
+                }
+            }
+            else if(kb.next().equals("seed")){
+                Critter.setSeed(Integer.parseInt(kb.nextLine()));
+            }
         }
         // System.out.println("GLHF");
         

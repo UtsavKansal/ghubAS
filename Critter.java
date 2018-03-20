@@ -132,6 +132,7 @@ public abstract class Critter {
 
 			offspring.x_coord = x_coord;
 			offspring.y_coord = y_coord;
+			offspring.energy += Params.walk_energy_cost;
 			offspring.walk(direction);
 
 			babies.add(offspring);
@@ -286,7 +287,7 @@ public abstract class Critter {
 								selectWinner(cr1, cr2);
 							}
 							else{
-								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){
+								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){ //fight has run in it?????????????????????????????????
 								/*	if(cr1.energy > Params.run_energy_cost){
 										cr1.run(0);
 									}
@@ -294,7 +295,18 @@ public abstract class Critter {
 										cr2.energy += cr1.energy / 2;
 									}
 									population.remove(i); */
-									cr1.run(0);
+									if(!cr1.toString().equals("@")){
+										if(cr1.energy > Params.run_energy_cost){
+											cr1.run(0);
+										}
+										else{
+											cr1.walk(0);
+										}
+									}
+									else{
+										cr2.energy += cr1.energy;
+										cr1.energy = 0;
+									}
 								}
 								if(!cr2.fight(cr1.toString()) && !movedCritters.contains(j)){
 								/*	if(cr2.energy > Params.run_energy_cost){
@@ -304,7 +316,19 @@ public abstract class Critter {
 										cr1.energy += cr2.energy / 2;
 									}
 									population.remove(j); */
-									cr2.run(4);
+									if(!cr2.toString().equals("@")){
+										if(cr2.energy > Params.run_energy_cost){
+
+											cr2.run(4);
+										}
+										else{
+											cr2.walk(4);
+										}
+									}
+									else{
+										cr1.energy += cr2.energy;
+										cr2.energy = 0;
+									}
 								}
 							}
 						}
@@ -313,7 +337,7 @@ public abstract class Critter {
 			}
 		}
 
-		for(Critter cr: population){
+		for(Critter cr : population){
 			// take into account resting critters
 			if(!movedCritters.contains(population.indexOf(cr))){
 				cr.rest();
@@ -323,9 +347,14 @@ public abstract class Critter {
 				population.remove(cr);
 			}
 		}
+
+		for(Critter cr : babies){
+			population.add(cr);
+			babies.remove(cr);
+		}
 	}
 
-	// this is a helper function yaaaaa
+	// this is a helper function
 	public static void selectWinner(Critter cr1, Critter cr2){
 		int cr1_energy = 0;
 		int cr2_energy = 0;
