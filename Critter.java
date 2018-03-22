@@ -16,6 +16,7 @@ package assignment4;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /* see the PDF for descriptions of the methods and fields in this class
@@ -287,14 +288,7 @@ public abstract class Critter {
 								selectWinner(cr1, cr2);
 							}
 							else{
-								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){ //fight has run in it?????????????????????????????????
-								/*	if(cr1.energy > Params.run_energy_cost){
-										cr1.run(0);
-									}
-									else if(cr2.fight(cr1.toString())){
-										cr2.energy += cr1.energy / 2;
-									}
-									population.remove(i); */
+								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){
 									if(!cr1.toString().equals("@")){
 										if(cr1.energy > Params.run_energy_cost){
 											cr1.run(0);
@@ -309,13 +303,6 @@ public abstract class Critter {
 									}
 								}
 								if(!cr2.fight(cr1.toString()) && !movedCritters.contains(j)){
-								/*	if(cr2.energy > Params.run_energy_cost){
-										cr2.run(4);
-									}
-									else if(cr1.fight(cr2.toString())){
-										cr1.energy += cr2.energy / 2;
-									}
-									population.remove(j); */
 									if(!cr2.toString().equals("@")){
 										if(cr2.energy > Params.run_energy_cost){
 
@@ -387,35 +374,38 @@ public abstract class Critter {
 	public static void displayWorld() {
 		int height = Params.world_height;
 		int width = Params.world_width;
-		String[][] world = new String[height + 1][width + 1];
+		char[][] world = new char[height + 1][width + 1];
 
 		// add borders
-		for(int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				if(i == 0 || i == height - 1){
-					world[i][j] = "-";
+		for(int i = 0; i <= height; i++) {
+			for (int j = 0; j <= width; j++) {
+				if(i == 0 || i == height){
+					world[i][j] = '-';
 				}
-				else if (j == 0 || j == width - 1){
-					world[i][j] = "|";
+				else if (j == 0 || j == width){
+					world[i][j] = '|';
 				}
 				else {
-					world[i][j] = " ";
+					world[i][j] = ' ';
 				}
 			}
 		}
-		world[0][0] = "+";
-		world[height - 1][0] = "+";
-		world[0][width - 1] = "+";
-		world[height - 1][width - 1] = "+";
+		world[0][0] = '+';
+		world[height][0] = '+';
+		world[0][width] = '+';
+		world[height][width] = '+';
 
 		// add critters
 		for(Critter cr : population){
-			world[cr.y_coord + 1][cr.x_coord + 1] = cr.toString();
+			world[cr.y_coord + 1][cr.x_coord + 1] = cr.toString().charAt(0);
 		}
 
 		// print grid
-		for(String[] s : world){
-			System.out.println(s);
+		for(int i = 0; i <= height; i++){
+			for (int j = 0; j <= width; j++) {
+				System.out.print(world[i][j]);
+			}
+			System.out.println();
 		}
 	}
 }

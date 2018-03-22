@@ -9,7 +9,7 @@ public class Algae extends TestCritter {
 
 	public String toString() { return "@"; }
 	
-	public boolean fight(String not_used) { return false; } // tf do when @ vs @
+	public boolean fight(String not_used) { return false; }
 
 	public void setX_Coord(){
 		super.setX_coord(getRandomInt(Params.world_width - 1));
