@@ -3,18 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2ccf9ca2-60ac-483d-9e85-5ffd4dc6448e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/MyCritter7.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/A4SampleTest.class" afterPath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/A4SampleTest.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/A4SampleTest2.class" afterPath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/A4SampleTest2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Critter$TestCritter.class" afterPath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Critter$TestCritter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Critter.class" afterPath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Critter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Main.class" afterPath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Main.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Params.class" afterPath="$PROJECT_DIR$/out/production/EE 422C - Project 4/assignment4/Params.class" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Critter.java" afterPath="$PROJECT_DIR$/src/assignment4/Critter.java" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Main.java" afterPath="$PROJECT_DIR$/src/assignment4/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Params.java" afterPath="$PROJECT_DIR$/src/assignment4/Params.java" />
-      <change beforePath="$PROJECT_DIR$/test_sample/assignment4/A4SampleTest.java" afterPath="$PROJECT_DIR$/test_sample/assignment4/A4SampleTest.java" />
-      <change beforePath="$PROJECT_DIR$/test_sample/assignment4/A4SampleTest2.java" afterPath="$PROJECT_DIR$/test_sample/assignment4/A4SampleTest2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
@@ -38,17 +26,13 @@
       <file leaf-file-name="Critter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="285" column="41" lean-forward="false" selection-start-line="285" selection-start-column="41" selection-end-line="285" selection-end-column="41" />
+            <state relative-caret-position="435">
+              <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
               <folding>
-                <element signature="e#735#744#0" expanded="true" />
-                <element signature="e#810#819#0" expanded="true" />
                 <element signature="e#1113#1114#0" expanded="true" />
                 <element signature="e#1144#1145#0" expanded="true" />
                 <element signature="e#2692#2693#0" expanded="true" />
                 <element signature="e#2732#2733#0" expanded="true" />
-                <element signature="e#4580#4589#0" expanded="true" />
-                <element signature="e#5061#5078#0" expanded="true" />
                 <element signature="e#6120#6121#0" expanded="true" />
                 <element signature="e#6160#6161#0" expanded="true" />
                 <element signature="e#6210#6211#0" expanded="true" />
@@ -73,19 +57,22 @@
       <file leaf-file-name="A4SampleTest2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_sample/assignment4/A4SampleTest2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
-              <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+            <state relative-caret-position="159">
+              <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EE 422C - Project 4.iml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/EE 422C - Project 4.iml">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="178">
+              <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5206#5215#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,7 +94,7 @@
       <file leaf-file-name="Algae.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Algae.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="330">
               <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
               <folding>
                 <element signature="e#176#177#0" expanded="true" />
@@ -224,6 +211,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,45 +230,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="assignment4" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="EE 422C - Project 4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE 422C - Project 4" type="462c0819:PsiDirectoryNode" />
-              <item name="test_sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE 422C - Project 4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE 422C - Project 4" type="462c0819:PsiDirectoryNode" />
-              <item name="test_sample" type="462c0819:PsiDirectoryNode" />
-              <item name="assignment4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE 422C - Project 4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE 422C - Project 4" type="462c0819:PsiDirectoryNode" />
-              <item name="test_sample" type="462c0819:PsiDirectoryNode" />
-              <item name="assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="A4SampleTest" type="1a9f42e2:ClassTreeNode" />
-            </path>
-            <path>
-              <item name="EE 422C - Project 4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE 422C - Project 4" type="462c0819:PsiDirectoryNode" />
-              <item name="test_sample" type="462c0819:PsiDirectoryNode" />
-              <item name="assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="A4SampleTest2" type="1a9f42e2:ClassTreeNode" />
-            </path>
-            <path>
-              <item name="EE 422C - Project 4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE 422C - Project 4" type="462c0819:PsiDirectoryNode" />
-              <item name="test_sample" type="462c0819:PsiDirectoryNode" />
-              <item name="make_large_critter" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -586,8 +542,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21411765" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21058823" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282353" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21058823" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -596,8 +552,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39294118" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39294118" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -648,19 +604,123 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test_sample/assignment4/A4SampleTest2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/MyCritter7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#222#223#0" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#280#281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Craig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#461#462#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/MyCritter1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding>
+            <element signature="e#297#298#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/MyCritter6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#305#306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_sample/assignment4/A4SampleTest2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/MyCritter7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#222#223#0" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#280#281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Algae.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding>
+            <element signature="e#176#177#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#426#427#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Craig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#461#462#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/MyCritter6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#305#306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#735#744#0" expanded="true" />
-            <element signature="e#810#819#0" expanded="true" />
             <element signature="e#1113#1114#0" expanded="true" />
             <element signature="e#1144#1145#0" expanded="true" />
             <element signature="e#2692#2693#0" expanded="true" />
             <element signature="e#2732#2733#0" expanded="true" />
-            <element signature="e#4580#4589#0" expanded="true" />
-            <element signature="e#5061#5078#0" expanded="true" />
             <element signature="e#6120#6121#0" expanded="true" />
             <element signature="e#6160#6161#0" expanded="true" />
             <element signature="e#6210#6211#0" expanded="true" />
@@ -787,34 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="732">
-          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5206#5215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment4/Algae.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding>
-            <element signature="e#176#177#0" expanded="true" />
-            <element signature="e#193#194#0" expanded="true" />
-            <element signature="e#236#237#0" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#283#284#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-            <element signature="e#426#427#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Params.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -845,19 +877,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/EE 422C - Project 4.iml" />
     <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="285" column="41" lean-forward="false" selection-start-line="285" selection-start-column="41" selection-end-line="285" selection-end-column="41" />
+        <state relative-caret-position="435">
+          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
           <folding>
-            <element signature="e#735#744#0" expanded="true" />
-            <element signature="e#810#819#0" expanded="true" />
             <element signature="e#1113#1114#0" expanded="true" />
             <element signature="e#1144#1145#0" expanded="true" />
             <element signature="e#2692#2693#0" expanded="true" />
             <element signature="e#2732#2733#0" expanded="true" />
-            <element signature="e#4580#4589#0" expanded="true" />
-            <element signature="e#5061#5078#0" expanded="true" />
             <element signature="e#6120#6121#0" expanded="true" />
             <element signature="e#6160#6161#0" expanded="true" />
             <element signature="e#6210#6211#0" expanded="true" />
@@ -878,19 +907,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Algae.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding>
+            <element signature="e#176#177#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#426#427#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_sample/assignment4/A4SampleTest2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+        <state relative-caret-position="159">
+          <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EE 422C - Project 4.iml">
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="178">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5206#5215#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
