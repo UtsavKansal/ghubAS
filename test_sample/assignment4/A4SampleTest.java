@@ -1,23 +1,17 @@
 package assignment4;
 
-import static org.junit.Assert.*;
-
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-
-import org.junit.Test;
-
 import assignment4.Critter.TestCritter;
+import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class A4SampleTest{
 
@@ -53,7 +47,7 @@ public class A4SampleTest{
      */
 	 
 	@Test 
-	public void KillCritters(){
+	public void KillCritters() throws InvalidCritterException {
 	
 		
 		//Uncomment Following Codeblock to test 
@@ -121,8 +115,12 @@ public class A4SampleTest{
 		
 		String fileFolder = "error_processing";
 		String[] inputs = {TESTSRCDIR + fileFolder + "/input.txt" ,"test"};
-		
-		Main.main(inputs);
+
+		try {
+			Main.main(inputs);
+		} catch (InvalidCritterException e) {
+			e.printStackTrace();
+		}
 		outContent = Main.testOutputString;
 		
 		Scanner scanner = null;
@@ -151,7 +149,7 @@ public class A4SampleTest{
 		 * Expects error in creating critters
 		 */
 		Params.world_width = 20;
-		Params.world_width = 20;
+		Params.world_height = 20;
 		Params.walk_energy_cost = 2;
 		Params.run_energy_cost = 5;
 		Params.rest_energy_cost = 1;
@@ -162,9 +160,13 @@ public class A4SampleTest{
 		
 		String fileFolder = "empty_world";
 		String[] inputs = {TESTSRCDIR + fileFolder + "/input.txt" ,"test"};
-		
-		
-		Main.main(inputs);
+
+
+		try {
+			Main.main(inputs);
+		} catch (InvalidCritterException e) {
+			e.printStackTrace();
+		}
 		outContent = Main.testOutputString;
 		
 		
@@ -194,10 +196,9 @@ public class A4SampleTest{
 	public void ParseMakeLargeCritter(){
 		// Test for make and show command
 		// Expects entire board to be filled with critters
-		
-		
+
 		Params.world_width = 20;
-		Params.world_width = 20;
+		Params.world_height = 20;
 		Params.walk_energy_cost = 2;
 		Params.run_energy_cost = 5;
 		Params.rest_energy_cost = 1;
@@ -211,8 +212,12 @@ public class A4SampleTest{
 		
 		Params.world_width = 20;
 		Params.world_height = 20;
-	
-		Main.main(inputs);
+
+		try {
+			Main.main(inputs);
+		} catch (InvalidCritterException e) {
+			e.printStackTrace();
+		}
 		outContent = Main.testOutputString;
 		
 		Scanner scanner = null;

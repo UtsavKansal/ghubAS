@@ -99,23 +99,20 @@ public abstract class Critter {
 			default:
 				break;
 		}
-		// check bounds
-		// right
-		if(x_coord >= Params.world_width){
-			x_coord = x_coord % Params.world_width;
+
+		if(x_coord > Params.world_width - 1) {
+			x_coord = (x_coord % (Params.world_width - 1)) - 1;
 		}
-		// left
-		else if(x_coord < 0){
-			x_coord = Params.world_width - x_coord*(-1);
+		if(y_coord > Params.world_height - 1) {
+			y_coord = (y_coord % (Params.world_height - 1)) - 1;
 		}
-		// up
-		if(y_coord >= Params.world_height){
-			y_coord = y_coord % Params.world_height;
+        if(x_coord < 0) {
+            x_coord += Params.world_width;
+        }
+		if(y_coord < 0) {
+			y_coord += Params.world_height;
 		}
-		// down
-		else if(y_coord < 0){
-			y_coord = Params.world_height - y_coord*(-1);
-		}
+
 	}
 
 	protected final void rest(){
@@ -155,8 +152,8 @@ public abstract class Critter {
 			Class c = Class.forName(critter_class_name);
 			Critter cr = (Critter) c.newInstance();
 			cr.energy = Params.start_energy;
-			cr.x_coord = getRandomInt(Params.world_width - 1);
-			cr.y_coord = getRandomInt(Params.world_height - 1);
+			cr.x_coord = getRandomInt(Params.world_width) + 1;
+			cr.y_coord = getRandomInt(Params.world_height) + 1;
 			population.add(cr);
 
 		}
@@ -173,6 +170,12 @@ public abstract class Critter {
 	 */
 	public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
 		List<Critter> result = new java.util.ArrayList<Critter>();
+
+		for (Critter c : population) {
+			if(c.getClass().getName().equalsIgnoreCase(critter_class_name)){
+				result.add(c);
+			}
+		}
 	
 		return result;
 	}
@@ -259,11 +262,12 @@ public abstract class Critter {
 		ArrayList<Integer> movedCritters = new ArrayList<>();	// checks for critters that moved
 
 		for (int i = 0; i < population.size(); i++){
-			int temp = population.get(i).energy;
+			int x_cord = population.get(i).x_coord;
+			int y_cord = population.get(i).y_coord;
 
 			population.get(i).doTimeStep();
 
-			if(temp != population.get(i).energy){
+			if((x_cord != population.get(i).x_coord) && (y_cord != population.get(i).y_coord)){
 				movedCritters.add(i);
 			}
 		}
@@ -273,49 +277,74 @@ public abstract class Critter {
 				if (i != j) {
 					Critter cr1 = population.get(i);
 					Critter cr2 = population.get(j);
+					int x_cord_cr1 = cr1.x_coord;
+					int y_cord_cr1 = cr1.y_coord;
+					int x_cord_cr2 = cr2.x_coord;
+					int y_cord_cr2 = cr2.y_coord;
 
 					if ((cr1.x_coord == cr2.x_coord) && (cr1.y_coord == cr2.y_coord)) {
+						// check if fight
+						boolean cr1_f = cr1.fight(cr2.toString());
+						boolean cr2_f = cr2.fight(cr1.toString());
+
+						// check if moved after fight & add to moved if true
+						if (!(cr1.x_coord == cr2.x_coord) && !(cr1.y_coord == cr2.y_coord)) {
+							if((cr1.x_coord != x_cord_cr1) && (cr1.y_coord != y_cord_cr1)){
+								movedCritters.add(i);
+							}
+							else if((cr2.x_coord != x_cord_cr2) && (cr2.y_coord != y_cord_cr2)){
+								movedCritters.add(j);
+							}
+						}
 
 						// if both critters moved
 						if (movedCritters.contains(i) && movedCritters.contains(j)) {
 							selectWinner(cr1,cr2);
 						}
-						// if either critters not move
+						// if one or the other does not move
 						else if (!movedCritters.contains(i) || !movedCritters.contains(j)) {
-							if (cr1.fight(cr2.toString()) && cr2.fight(cr1.toString())) {
+
+							// check if both want to fight
+							if (cr1_f && cr2_f) {
 								selectWinner(cr1, cr2);
 							}
-							else{
-								if(!cr1.fight(cr2.toString()) && !movedCritters.contains(i)){
 
-									// check if its Algae
-									if(!cr1.toString().equals("@")){
+							// neither wants to fight
+							else{
+
+								// check if cr1 doesn't want to fight and doesn't move
+								if(!cr1_f && !movedCritters.contains(i)){
+
+									// check if Algae
+									if(cr1.toString().equals("@")){
+										cr2.energy += cr1.energy;
+										cr1.energy = 0;
+									}
+									else{
 										if(cr1.energy > Params.run_energy_cost){
-											cr1.run(0);
+//											cr1.run(0);
 										}
 										else{
 											cr1.walk(0);
 										}
 									}
-									else{
-										cr2.energy += cr1.energy;
-										cr1.energy = 0;
-									}
 								}
-								if(!cr2.fight(cr1.toString()) && !movedCritters.contains(j)){
+
+								// check if cr2 doesn't want to fight and doesn't move
+								if(!cr2_f && !movedCritters.contains(j)){
 
 									// check if Algae
-									if(!cr2.toString().equals("@")){
+									if(cr2.toString().equals("@")){
+										cr1.energy += cr2.energy;
+										cr2.energy = 0;
+									}
+									else{
 										if(cr2.energy > Params.run_energy_cost){
 											cr2.run(4);
 										}
 										else{
 											cr2.walk(4);
 										}
-									}
-									else{
-										cr1.energy += cr2.energy;
-										cr2.energy = 0;
 									}
 								}
 							}
@@ -325,21 +354,25 @@ public abstract class Critter {
 			}
 		}
 
-		for(Critter cr : population){
+		for (int i = 0; i < population.size(); i++) {
+			Critter c = population.get(i);
+
 			// take into account resting critters
-			if(!movedCritters.contains(population.indexOf(cr))){
-				cr.rest();
+			if(!movedCritters.contains(c)){
+				c.rest();
 			}
 			//remove dead critters;
-			if(cr.energy <= 0){
-				population.remove(cr);
+			if(c.energy <= 0){
+				population.remove(i);
 			}
 		}
 
-		for(Critter cr : babies){
-			population.add(cr);
-			babies.remove(cr);
+		// add the babies
+		for (int i = 0; i < babies.size(); i++) {
+			population.add(babies.get(i));
+
 		}
+		babies.clear();
 	}
 
 
@@ -348,11 +381,13 @@ public abstract class Critter {
 		int cr1_energy = 0;
 		int cr2_energy = 0;
 
-		if (cr1.fight(cr2.toString())) {
-			cr1_energy = getRandomInt(cr1.energy - 1) + 1;
+		if (cr1.fight(cr2.toString()) && (cr1.energy > 0)) {
+			cr1_energy = getRandomInt(cr1.energy) + 1;
+			assert (cr1_energy > 0);
 		}
-		if (cr2.fight(cr1.toString())) {
-			cr2_energy = getRandomInt(cr2.energy - 1) + 1;
+		if (cr2.fight(cr1.toString()) && (cr2.energy > 0)) {
+			cr2_energy = getRandomInt(cr2.energy) + 1;
+			assert (cr2_energy > 0);
 		}
 
 		// if neither want to fight
@@ -374,8 +409,8 @@ public abstract class Critter {
 
 
 	public static void displayWorld() {
-		int height = Params.world_height;
-		int width = Params.world_width;
+		int height = Params.world_height + 1;
+		int width = Params.world_width + 1;
 		char[][] world = new char[height + 1][width + 1];
 
 		// add borders
@@ -398,8 +433,12 @@ public abstract class Critter {
 		world[height][width] = '+';
 
 		// add critters
-		for(Critter cr : population){
-			world[cr.y_coord + 1][cr.x_coord + 1] = cr.toString().charAt(0);
+		for(int i = 0; i < population.size(); i++){
+			Critter cr = population.get(i);
+
+			if( (cr.x_coord <= width) && (cr.y_coord <= height) && (cr.x_coord > 0) && (cr.y_coord > 0)){
+				world[cr.y_coord][cr.x_coord] = cr.toString().charAt(0);
+			}
 		}
 
 		// print grid
