@@ -16,11 +16,11 @@ public class Algae extends TestCritter {
 	}
 
 	public void setX_Coord(){
-		super.setX_coord(getRandomInt(Params.world_width - 1));
+		super.setX_coord(getRandomInt(Params.world_width));
 	}
 
 	public void setY_Coord(){
-		super.setY_coord(getRandomInt(Params.world_height - 1));
+		super.setY_coord(getRandomInt(Params.world_height));
 	}
 	
 	public void doTimeStep() {
@@ -28,5 +28,7 @@ public class Algae extends TestCritter {
 		al.setX_Coord();
 		al.setY_Coord();
 		setEnergy(getEnergy() + Params.photosynthesis_energy_amount);
+		reproduce(al, Critter.getRandomInt(8));
 	}
+	// algae is supposed to spawn new ones
 }

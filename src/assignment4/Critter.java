@@ -99,23 +99,38 @@ public abstract class Critter {
 			default:
 				break;
 		}
-		// check bounds
-		// right
-		if(x_coord >= Params.world_width){
-			x_coord = x_coord % Params.world_width;
+
+		if(x_coord > Params.world_width - 1) {
+			x_coord = (x_coord % (Params.world_width - 1)) - 1;
 		}
-		// left
-		else if(x_coord < 0){
-			x_coord = Params.world_width - x_coord*(-1);
+		if(x_coord < 0) {
+			x_coord = Params.world_width + x_coord;
 		}
-		// up
-		if(y_coord >= Params.world_height){
-			y_coord = y_coord % Params.world_height;
+		if(y_coord > Params.world_height - 1) {
+			y_coord = (y_coord % (Params.world_height - 1)) - 1;
 		}
-		// down
-		else if(y_coord < 0){
-			y_coord = Params.world_height - y_coord*(-1);
+		if(y_coord < 0) {
+			y_coord = Params.world_height + y_coord;
 		}
+
+
+//		// check bounds
+//		// right
+//		if(x_coord > Params.world_width - 1){
+//			x_coord = x_coord % Params.world_width - 1;
+//		}
+//		// left
+//		else if(x_coord < 0){
+//			x_coord = Params.world_width - x_coord*(-1);
+//		}
+//		// up
+//		if(y_coord > Params.world_height - 1){
+//			y_coord = y_coord % Params.world_height;
+//		}
+//		// down
+//		else if(y_coord < 0){
+//			y_coord = Params.world_height - y_coord*(-1);
+//		}
 	}
 
 	protected final void rest(){
@@ -155,8 +170,8 @@ public abstract class Critter {
 			Class c = Class.forName(critter_class_name);
 			Critter cr = (Critter) c.newInstance();
 			cr.energy = Params.start_energy;
-			cr.x_coord = getRandomInt(Params.world_width - 1);
-			cr.y_coord = getRandomInt(Params.world_height - 1);
+			cr.x_coord = getRandomInt(Params.world_width);
+			cr.y_coord = getRandomInt(Params.world_height);
 			population.add(cr);
 
 		}
@@ -173,6 +188,12 @@ public abstract class Critter {
 	 */
 	public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
 		List<Critter> result = new java.util.ArrayList<Critter>();
+
+		for (Critter c : population) {
+			if(c.getClass().getName().equalsIgnoreCase(critter_class_name)){
+				result.add(c);
+			}
+		}
 	
 		return result;
 	}
@@ -259,11 +280,12 @@ public abstract class Critter {
 		ArrayList<Integer> movedCritters = new ArrayList<>();	// checks for critters that moved
 
 		for (int i = 0; i < population.size(); i++){
-			int temp = population.get(i).energy;
+			int x_cord = population.get(i).x_coord;
+			int y_cord = population.get(i).y_coord;
 
 			population.get(i).doTimeStep();
 
-			if(temp != population.get(i).energy){
+			if((x_cord != population.get(i).x_coord) && (y_cord != population.get(i).y_coord)){
 				movedCritters.add(i);
 			}
 		}
@@ -325,21 +347,25 @@ public abstract class Critter {
 			}
 		}
 
-		for(Critter cr : population){
+		for (int i = 0; i < population.size(); i++) {
+			Critter c = population.get(i);
+
 			// take into account resting critters
-			if(!movedCritters.contains(population.indexOf(cr))){
-				cr.rest();
+			if(!movedCritters.contains(c)){
+				c.rest();
 			}
 			//remove dead critters;
-			if(cr.energy <= 0){
-				population.remove(cr);
+			if(c.energy <= 0){
+				population.remove(i);
 			}
 		}
 
-		for(Critter cr : babies){
-			population.add(cr);
-			babies.remove(cr);
+		// add the babies
+		for (int i = 0; i < babies.size(); i++) {
+			population.add(babies.get(i));
+
 		}
+		babies.clear();
 	}
 
 
@@ -348,11 +374,13 @@ public abstract class Critter {
 		int cr1_energy = 0;
 		int cr2_energy = 0;
 
-		if (cr1.fight(cr2.toString())) {
-			cr1_energy = getRandomInt(cr1.energy - 1) + 1;
+		if (cr1.fight(cr2.toString()) && (cr1.energy > 0)) {
+			cr1_energy = getRandomInt(cr1.energy) + 1;
+			assert (cr1_energy > 0);
 		}
-		if (cr2.fight(cr1.toString())) {
-			cr2_energy = getRandomInt(cr2.energy - 1) + 1;
+		if (cr2.fight(cr1.toString()) && (cr2.energy > 0)) {
+			cr2_energy = getRandomInt(cr2.energy) + 1;
+			assert (cr2_energy > 0);
 		}
 
 		// if neither want to fight
@@ -399,7 +427,9 @@ public abstract class Critter {
 
 		// add critters
 		for(Critter cr : population){
-			world[cr.y_coord + 1][cr.x_coord + 1] = cr.toString().charAt(0);
+			if( (cr.x_coord < width) && (cr.y_coord < height) && (cr.x_coord > 0) && (cr.y_coord > 0)){
+				world[cr.y_coord][cr.x_coord] = cr.toString().charAt(0);
+			}
 		}
 
 		// print grid
