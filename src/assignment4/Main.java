@@ -76,16 +76,21 @@ public class Main {
 
         /* Do not alter the code above for your submission. */
         /* Write your code below. */
+        System.out.print("critters> ");
+
         while(kb.hasNextLine()){
+
             String[] tempArr = kb.nextLine().trim().split(" ");
             String temp = tempArr[0];
 
             if(temp.equals("quit")){
                 return;
             }
+
             else if(temp.equals("show")){
                 Critter.displayWorld();
             }
+
             else if(temp.equals("step")){
                 int limit = 1;
 
@@ -111,30 +116,32 @@ public class Main {
                 int amt = 0;
                 String cr;
 
-                if(tempArr.length > 1){
-                    if((tempArr[2] != null) && (tempArr[1] != null)){
-                        try{
-                            amt = Integer.parseInt(tempArr[2]);
-                        } catch (NumberFormatException e){
-                            System.out.println("error processing: " + temp);
-                            break;
+                if(tempArr.length > 1 ){
+                    try{
+                        amt = Integer.parseInt(tempArr[2]);
+                    } catch (NumberFormatException e){
+                        System.out.print("error processing: ");
+                        for (int i = 0; i < tempArr.length; i++) {
+                            System.out.print(tempArr[i] + " ");
                         }
-
-                        cr = "assignment4." + tempArr[1];
-
-                        for (int i = 0; i < amt; i++) {
-                            try{
-                                Critter.makeCritter(cr);
-                            } catch(InvalidCritterException e){
-                                System.out.println("error processing: " + temp);
-                            }
-                        }
+                        System.out.println();
                     }
 
 
+                    cr = "assignment4." + tempArr[1];
+
+                    for (int i = 0; i < amt; i++) {
+                        try{
+                            Critter.makeCritter(cr);
+                        } catch(InvalidCritterException e){
+                            System.out.println("error processing: " + temp);
+                        }
+                    }
+//                    System.out.println();
                 }
 
             }
+
             else if(temp.equals("stats")){
                 List<Critter> list = new ArrayList<Critter>();
                 String cr;
@@ -150,13 +157,23 @@ public class Main {
                 }catch (InvalidCritterException | ClassNotFoundException |
                         NoSuchMethodException | IllegalAccessException |
                         InvocationTargetException e){
-                    System.out.println("error processing: " + temp);
+                    System.out.print("error processing: ");
+                    for (int i = 0; i < tempArr.length; i++) {
+                        System.out.print(tempArr[i] + " ");
+                    }
+//                    System.out.println();
                 }
 
             }
             else {
-                System.out.println("invalid command: " + temp);
+                System.out.print("invalid command: ");
+                for (int i = 0; i < tempArr.length; i++) {
+                    System.out.print(tempArr[i] + " ");
+                }
+//                System.out.println();
             }
+
+            System.out.print("\ncritters> ");
         }
         // System.out.println("GLHF");
         

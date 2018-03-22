@@ -1,16 +1,9 @@
 package assignment4;
 
-import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import assignment4.Critter.TestCritter;
-import java.awt.Point;
-import java.util.List;
+import org.junit.*;
+
+import static org.junit.Assert.*;
 public class A4SampleTest2 {
 
 	private static final boolean DEBUG = false;
@@ -45,7 +38,10 @@ public class A4SampleTest2 {
 	// Utility method.
 	/**
 	 *  Move n steps in the specified direction.
-	 *  @param current x, current y, direction to move, steps to move
+	 *  @param x_coord
+	 *  @param y_coord
+	 *  @param direction
+	 *  @param n
 	 *  @return new co-ordinates. 
 	 */
 	public static int[] moveStep(int x_coord, int y_coord, int direction, int n) {
@@ -76,7 +72,7 @@ public class A4SampleTest2 {
 	 * @throws InvalidCritterException
 	 */
 	public void testWalk() throws InvalidCritterException {
-		Critter.makeCritter("MyCritter1");
+		Critter.makeCritter("assignment4.MyCritter1");
 		MyCritter1 m1 = (MyCritter1) Critter.TestCritter.getPopulation().get(0);
 		int x1a = m1.getX_coord(); int  y1a = m1.getY_coord();
 		m1.doTimeStep();
@@ -91,7 +87,7 @@ public class A4SampleTest2 {
 	 * Walks 1 step each turn.  Check energy drop at each turn.
 	 */
 	public void WalkEnergyTest() throws InvalidCritterException {
-		Critter.makeCritter("MyCritter1");
+		Critter.makeCritter("assignment4.MyCritter1");
 		MyCritter1 c = (MyCritter1) Critter.TestCritter.getPopulation().get(0);
 		int step = 0;
 		int energyUsePerStep = Params.rest_energy_cost + Params.walk_energy_cost;
@@ -115,10 +111,10 @@ public class A4SampleTest2 {
 		int x = 0;
 		int y = 0;
 		int num = 2;
-		Critter.makeCritter("MyCritter6");
-		MyCritter6 runner = (MyCritter6) Critter.getInstances("MyCritter6").get(0);
-		Critter.makeCritter("MyCritter7");
-		MyCritter7 fighter = (MyCritter7) Critter.getInstances("MyCritter7").get(0);
+		Critter.makeCritter("assignment4.MyCritter6");
+		MyCritter6 runner = (MyCritter6) Critter.getInstances("assignment4.MyCritter6").get(0);
+		Critter.makeCritter("assignment4.MyCritter7");
+		MyCritter7 fighter = (MyCritter7) Critter.getInstances("assignment4.MyCritter7").get(0);
 		runner.setX_coord(x);
 		runner.setY_coord(y);
 		fighter.setX_coord(x);

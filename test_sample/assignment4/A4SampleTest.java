@@ -149,7 +149,7 @@ public class A4SampleTest{
 		 * Expects error in creating critters
 		 */
 		Params.world_width = 20;
-		Params.world_width = 20;
+		Params.world_height = 20;
 		Params.walk_energy_cost = 2;
 		Params.run_energy_cost = 5;
 		Params.rest_energy_cost = 1;
@@ -198,7 +198,7 @@ public class A4SampleTest{
 		// Expects entire board to be filled with critters
 
 		Params.world_width = 20;
-		Params.world_width = 20;
+		Params.world_height = 20;
 		Params.walk_energy_cost = 2;
 		Params.run_energy_cost = 5;
 		Params.rest_energy_cost = 1;
