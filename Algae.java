@@ -20,9 +20,6 @@ public class Algae extends TestCritter {
 	}
 
 	public void doTimeStep() {
-		Algae al = new Algae();
-		al.setX_Coord();
-		al.setY_Coord();
 		setEnergy(getEnergy() + Params.photosynthesis_energy_amount);
 	}
 }
